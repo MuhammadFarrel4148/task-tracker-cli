@@ -4,7 +4,8 @@ const {
     deleteTaskService,
     markInProgressService,
     markDoneService,
-    listAllTasksService
+    listAllTasksService,
+    listAllTasksByStatusService
 } = require('../../service/tasksService');
 
 const addTaskHandler = (descriptionPayload) => {
@@ -74,11 +75,25 @@ const listAllTasksHandler = () => {
     };
 };
 
+const listAllTasksByStatusHandler = (status) => {
+    try {
+        const tasks = listAllTasksByStatusService(status);
+
+        for(const item of tasks) {
+            console.log(item);
+        };
+
+    } catch(error) {
+        console.error(error);
+    };
+};
+
 module.exports = {
     addTaskHandler,
     updateTaskHandler,
     deleteTaskHandler,
     markInProgressTaskHandler,
     markDoneTaskHandler,
-    listAllTasksHandler
+    listAllTasksHandler,
+    listAllTasksByStatusHandler
 };

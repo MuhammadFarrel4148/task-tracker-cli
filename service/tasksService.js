@@ -140,7 +140,20 @@ const listAllTasksService = () => {
 
     } catch(error) {
         throw new Error('gagal mengambil tasks')
-    }
+    };
+};
+
+const listAllTasksByStatusService = (status) => {
+    try {
+        const tasks = loadTasks();
+
+        const filteredTask = tasks.filter((task) => task.status === status);
+
+        return filteredTask;
+
+    } catch(error) {
+        throw new Error('gagal mengambil tasks');
+    };
 };
 
 module.exports = {
@@ -149,5 +162,6 @@ module.exports = {
     deleteTaskService,
     markInProgressService,
     markDoneService,
-    listAllTasksService
+    listAllTasksService,
+    listAllTasksByStatusService
 };
