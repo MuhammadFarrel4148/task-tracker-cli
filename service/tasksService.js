@@ -80,8 +80,32 @@ const deleteTaskService = (taskId) => {
     };
 };
 
+const markInProgressService = (taskId) => {
+    try {
+        const tasks = loadTasks();
+
+        const taskIndex = tasks.findIndex((task) => task.id === taskId);
+
+        if(taskIndex !== -1) {
+            tasks[taskIndex] = {
+                ...tasks[taskIndex],
+                status: 'in-progress'
+            };
+
+            savedTasks(tasks);
+
+        } else {
+            throw new Error('task tidak ditemukan, coba lagi');    
+        };
+
+    } catch(error) {
+        console.error(error);
+    };
+};
+
 module.exports = {
     addTaskService,
     updateTaskService,
-    deleteTaskService
+    deleteTaskService,
+    markInProgressService
 };

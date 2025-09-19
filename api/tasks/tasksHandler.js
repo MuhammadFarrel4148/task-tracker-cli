@@ -1,7 +1,8 @@
 const { 
     addTaskService,
     updateTaskService,
-    deleteTaskService
+    deleteTaskService,
+    markInProgressService
 } = require('../../service/tasksService');
 
 const addTaskHandler = (descriptionPayload) => {
@@ -36,8 +37,20 @@ const deleteTaskHandler = (taskId) => {
     };
 };
 
+const markInProgressTaskHandler = (taskId) => {
+    try {
+        const id = parseInt(taskId);
+
+        markInProgressService(id);
+
+    } catch(error) {
+        console.error(error);
+    }
+};
+
 module.exports = {
     addTaskHandler,
     updateTaskHandler,
-    deleteTaskHandler
+    deleteTaskHandler,
+    markInProgressTaskHandler
 };
