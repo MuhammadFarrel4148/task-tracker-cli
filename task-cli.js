@@ -2,7 +2,8 @@ const {
     addTaskHandler,
     updateTaskHandler,
     deleteTaskHandler,
-    markInProgressTaskHandler
+    markInProgressTaskHandler,
+    markDoneTaskHandler
 } = require('./api/tasks/tasksHandler');
 
 const [ ,, command, ...args ] = process.argv;
@@ -48,7 +49,7 @@ switch(command) {
         if(args.length !== 1) {
             console.error('argumen mark-done membutuhkan satu argumen id');
         } else {
-            markDoneTask(args[0]);
+            markDoneTaskHandler(args[0]);
         };
 
         break;
