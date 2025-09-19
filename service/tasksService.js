@@ -44,10 +44,12 @@ const updateTaskService = (taskId, taskDescription) => {
         const tasks = loadTasks();
 
         const taskIndex = tasks.findIndex((task) => task.id === taskId);
+        const updatedAt = new Date().toISOString();
 
         tasks[taskIndex] = {
             ...tasks[taskIndex],
-            description: taskDescription
+            description: taskDescription,
+            updatedAt
         };
 
         savedTasks(tasks);
@@ -85,11 +87,13 @@ const markInProgressService = (taskId) => {
         const tasks = loadTasks();
 
         const taskIndex = tasks.findIndex((task) => task.id === taskId);
+        const updatedAt = new Date().toISOString();
 
         if(taskIndex !== -1) {
             tasks[taskIndex] = {
                 ...tasks[taskIndex],
-                status: 'in-progress'
+                status: 'in-progress',
+                updatedAt
             };
 
             savedTasks(tasks);
@@ -108,11 +112,13 @@ const markDoneService = (taskId) => {
         const tasks = loadTasks();
 
         const taskIndex = tasks.findIndex((task) => task.id === taskId);
+        const updatedAt = new Date().toISOString();
 
         if(taskIndex !== -1) {
             tasks[taskIndex] = {
                 ...tasks[taskIndex],
-                status: 'done'
+                status: 'done',
+                updatedAt
             };
 
             savedTasks(tasks);
