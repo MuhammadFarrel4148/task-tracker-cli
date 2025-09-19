@@ -132,10 +132,22 @@ const markDoneService = (taskId) => {
     };
 };
 
+const listAllTasksService = () => {
+    try {
+        const tasks = loadTasks();
+
+        return tasks;
+
+    } catch(error) {
+        throw new Error('gagal mengambil tasks')
+    }
+};
+
 module.exports = {
     addTaskService,
     updateTaskService,
     deleteTaskService,
     markInProgressService,
-    markDoneService
+    markDoneService,
+    listAllTasksService
 };

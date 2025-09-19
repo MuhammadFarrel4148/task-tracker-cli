@@ -3,7 +3,8 @@ const {
     updateTaskHandler,
     deleteTaskHandler,
     markInProgressTaskHandler,
-    markDoneTaskHandler
+    markDoneTaskHandler,
+    listAllTasksHandler
 } = require('./api/tasks/tasksHandler');
 
 const [ ,, command, ...args ] = process.argv;
@@ -55,7 +56,7 @@ switch(command) {
         break;
     
     case 'list': 
-        listAllTasks(args[0], args[1]);
+        listAllTasksHandler();
         break;
 
     default: 
